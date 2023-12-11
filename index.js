@@ -5,7 +5,7 @@ const PORT = 5000;
 const artistRouter = require('./Routes/artist')
 const patronsRouter = require('./Routes/patrons'); 
 const artworkRouter = require('./Routes/artWorks'); 
-const reviewRouter = require('./Models/Reviews')
+const reviewRouter = require('./Routes/reviews')
 
 const connectToDb = require('./Database/connection')
 connectToDb(); 
