@@ -5,6 +5,7 @@ const PORT = 5000;
 const artistRouter = require('./Routes/artist')
 const patronsRouter = require('./Routes/patrons'); 
 const artworkRouter = require('./Routes/artWorks'); 
+const reviewRouter = require('./Models/Reviews')
 
 const connectToDb = require('./Database/connection')
 connectToDb(); 
@@ -15,6 +16,7 @@ app.use(cors())
 app.use('/patrons', patronsRouter);
 app.use('/artists', artistRouter); 
 app.use('/artworks', artworkRouter); 
+app.use('/reviews', reviewRouter); 
 
 app.listen(PORT, ()=>
 {

@@ -7,12 +7,6 @@ const reviewSchema = new Schema({
         ref: "patrons" 
     },
 
-    artist: 
-    {
-        type: Schema.Types.ObjectId, 
-        ref: 'artists'
-    }, 
-
     artwork: { 
         type: Schema.Types.ObjectId, 
         ref: "artwork" 
