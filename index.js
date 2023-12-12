@@ -2,10 +2,11 @@ const express = require('express')
 const app = express()
 const cors = require('cors')
 const PORT = 5000; 
-const artistRouter = require('./Routes/artist')
+const artistRouter = require('./Routes/artist'); 
 const patronsRouter = require('./Routes/patrons'); 
 const artworkRouter = require('./Routes/artWorks'); 
-const reviewRouter = require('./Routes/reviews')
+const reviewRouter = require('./Routes/reviews'); 
+const workshopRouter = require('./Routes/workshops'); 
 
 const connectToDb = require('./Database/connection')
 connectToDb(); 
@@ -17,6 +18,7 @@ app.use('/patrons', patronsRouter);
 app.use('/artists', artistRouter); 
 app.use('/artworks', artworkRouter); 
 app.use('/reviews', reviewRouter); 
+app.use('/workshops', workshopRouter); 
 
 app.listen(PORT, ()=>
 {

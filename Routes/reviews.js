@@ -1,5 +1,6 @@
 const express = require('express')
-const Reviews = require('../Models/Reviews')
+const Reviews = require('../Models/Reviews');
+const Patrons = require('../Models/Patrons');
 const router = express.Router();
 
 router.get('/:id', async (req, res) => {
@@ -16,9 +17,11 @@ router.get('/:id', async (req, res) => {
 
 router.post('/addreview/:id', async (req, res) => {
 	const { id } = req.params;
-	const { patronId, content } = req.body;
+	const { username, content } = req.body;
+	console.log(req.body)
 	try {
-		const review = await Reviews.create({ artwork: id, patron: patronId, content: content });
+		const patron = await Patrons.findOne({username: username})
+		const review = await Reviews.create({ artwork: id, patron: patron.id, content: content });
 		return res.send(review);
 	}
 

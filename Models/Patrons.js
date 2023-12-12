@@ -25,6 +25,13 @@ const PatronsSchema = new Schema({
 			ref: "artwork",
 		},
 	],
+
+	subscribedWorkshops: [
+		{
+			type: Schema.Types.ObjectId,
+			ref: "workshops",
+		}
+	]
 });
 
 module.exports = mongoose.model("patrons", PatronsSchema);

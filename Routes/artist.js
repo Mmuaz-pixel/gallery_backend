@@ -19,10 +19,6 @@ router.post('/register', async (req, res) => {
 	try {
 		user = await Artists.create({ username: username, followers: [], workshops: [], artworks: [] })
 
-		req.artist = {
-			id: user.id,
-			type: 'artist'
-		}
 	}
 	catch (error) {
 		res.status(500).send("Server error occured");
@@ -32,16 +28,22 @@ router.post('/register', async (req, res) => {
 })
 
 router.get('/name/:id', async(req, res)=> 
-{	
-	const { id } = req.params; 
-	const artist = await Artists.findById(id); 
-	res.send(artist); 
+{	try 
+	{
+		const { id } = req.params; 
+		const artist = await Artists.findById(id); 
+		res.send(artist); 
+	}
+	catch (error)
+	{
+		res.status(500).send("Server error")
+	}
 })
 
 router.get('/artworks/:username', async (req, res) => {
 	const { username } = req.params;
 	if (!username) res.status(404).send("Id not found");
-	const artist = Artists.findOne({username: username})
+	const artist = await Artists.findOne({username: username})
 	const artWorks = await ArtWork.find({ artist: artist.id });
 	res.json(artWorks);
 })
